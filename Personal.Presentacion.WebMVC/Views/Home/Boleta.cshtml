@@ -1,0 +1,33 @@
+﻿@model Personal.Presentacion.WebMVC.Models.Boleta
+@{ 
+    Layout = null;
+
+}
+
+<h1>@Model.Serie</h1>
+<h2>@Model.Cliente</h2>
+<h3>@Model.FechaDeVenta</h3>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Descripcion</th>
+            <th>Monto</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var detalle in Model.Detalles)
+        {
+            <tr>
+                <td>@detalle.Descripcion</td>
+                <td>@detalle.Monto</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<img src="@Model.QREnBase64"/>
+
+<p> El Total es @Model.Total</p>
+
