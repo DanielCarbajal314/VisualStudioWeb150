@@ -25,6 +25,12 @@ namespace Personal.Presentacion.WebMVC
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/actividad").Include(
+            "~/Scripts/Galerias/vue.js",
+            "~/Scripts/Mantenimientos/Actividad.js"));
+
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

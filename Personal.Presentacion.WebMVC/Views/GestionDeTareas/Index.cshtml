@@ -1,0 +1,70 @@
+﻿<div id="app" class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Proyecto</label>
+            <select v-model="proyectoId" class="form-control">
+                <option v-for="proyecto in listaDeProyectos"
+                        v-bind:value="proyecto.Id">
+                    {{proyecto.Nombre}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Persona</label>
+            <select v-model="personaId" class="form-control">
+                <option v-for="persona in listaDePersonas"
+                        v-bind:value="persona.Id">
+                    {{persona.Nombre}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Nombre</label>
+            <input class="form-control" type="text" v-model="Nombre" />
+        </div>
+        <div class="form-group">
+            <label>Hora Inicio</label>
+            <input class="form-control" type="date" v-model="HoraInicio" />
+        </div>
+        <div class="form-group">
+            <label>Hora Fin</label>
+            <input class="form-control" type="date" v-model="HoraFin" />
+        </div>
+        <div class="form-group">
+            <label>Observacion</label>
+            <input class="form-control" type="text" v-model="Observacion" />
+        </div>
+        <div class="form-group">
+            <label>Estado</label>
+            <select v-model="Estado" class="form-control">
+                <option value="0">En Proceso</option>
+                <option value="1">Terminado</option>
+                <option value="2">Pendiente</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" v-on:click="GuardarEnElServidor"> Guardar Actividad</button>
+        </div>
+    </div>
+    <div class="col-md-8 container">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Proyecto</th>
+                    <th>Persona</th>
+                    <th>Actividad</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="actividad in listaDeActividades" v-on:click="elegirActividad(actividad)">
+                    <td>{{actividad.NombreDelProyecto}}</td>
+                    <td>{{actividad.NombreDeLaPersona}}</td>
+                    <td>{{actividad.NombreDeLaActividad}}</td>
+                    <td>{{actividad.EstadoDeLaActividad}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+@Scripts.Render("~/bundles/actividad")

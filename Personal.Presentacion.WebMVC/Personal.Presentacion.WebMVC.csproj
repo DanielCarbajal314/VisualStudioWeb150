@@ -154,6 +154,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ActividadsController.cs" />
+    <Compile Include="Controllers\GestionDeTareasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\GestionDeActividadesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -174,6 +176,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\Galerias\vue.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -183,6 +186,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Mantenimientos\Actividad.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -199,6 +203,12 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Boleta.cshtml" />
+    <Content Include="Views\Actividads\Create.cshtml" />
+    <Content Include="Views\Actividads\Delete.cshtml" />
+    <Content Include="Views\Actividads\Details.cshtml" />
+    <Content Include="Views\Actividads\Edit.cshtml" />
+    <Content Include="Views\Actividads\Index.cshtml" />
+    <Content Include="Views\GestionDeTareas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
