@@ -5,7 +5,6 @@ namespace Personal.Presentacion.WebMVC
 {
     public class BundleConfig
     {
-        // Para obtener más información sobre las uniones, visite https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
@@ -28,6 +27,7 @@ namespace Personal.Presentacion.WebMVC
 
             bundles.Add(new ScriptBundle("~/bundles/actividad").Include(
             "~/Scripts/Galerias/vue.js",
+            "~/Scripts/Galerias/vueNotification.js",
             "~/Scripts/Mantenimientos/Actividad.js"));
 
             BundleTable.EnableOptimizations = true;

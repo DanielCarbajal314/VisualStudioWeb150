@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IGestorDeErrores.cs" />
     <Compile Include="IGestorDePersonal.cs" />
     <Compile Include="Peticiones\CrearActividad.cs" />
+    <Compile Include="Peticiones\CrearExcepcion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Respuestas\ActividadRegistrada.cs" />
     <Compile Include="Respuestas\PersonaRegistrada.cs" />

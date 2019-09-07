@@ -1,4 +1,6 @@
-﻿var app = new Vue({
+﻿Vue.use(VueToast);
+
+var app = new Vue({
     el: '#app',
     data: {
         listaDeProyectos: [],
@@ -19,19 +21,19 @@
                     this.listaDeProyectos.push(...proyectosEnElServidor);
                     if (proyectosEnElServidor.length > 0)
                         this.proyectoId = proyectosEnElServidor[0].Id;
-                })
+                });
         },
         cargarPersonas: function () {
             $.get('/api/GestionDeActividades/Personal')
                 .then(personasEnElServidor => {
                     this.listaDePersonas.push(...personasEnElServidor);
-                })
+                });
         },
         cargarActividades: function () {
             $.get('/api/GestionDeActividades/Actividades')
                 .then(actividadesEnElServidor => {
                     this.listaDeActividades.push(...actividadesEnElServidor);
-                })
+                });
         },
         GuardarEnElServidor: function () {
             let data = {
@@ -43,10 +45,18 @@
                 Observacion: this.Observacion,
                 Estado: this.Estado
             };
-            post('/api/GestionDeActividades/RegistrarNuevaActividad', data).then(nuevaActividad => {
-                this.listaDeActividades.push(nuevaActividad);
-                this.LimpiarFormulario();
-            });
+            post('/api/GestionDeActividades/RegistrarNuevaActividad', data)
+                .then(nuevaActividad => {
+                    this.listaDeActividades.push(nuevaActividad);
+                    this.LimpiarFormulario();
+                })
+                .catch(error => {
+                    let mensageDeErro = error.responseJSON.MensajeDeError;
+                    Vue.$toast.error(mensageDeErro, {
+                        position: 'top-right',
+                        duration: 5000
+                    });
+                });
         },
         LimpiarFormulario: function () {
             this.proyectoId = null;
@@ -74,5 +84,5 @@ function post(url, data) {
         data: JSON.stringify(data),
         contentType: 'application/json; charset=utf-8',
         dataType: 'json'
-    })
+    });
 }

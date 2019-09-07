@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Personal.Presentacion.WebMVC.Filtros;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -13,6 +14,8 @@ namespace Personal.Presentacion.WebMVC
 
             // Rutas de API web
             config.MapHttpAttributeRoutes();
+
+            config.Filters.Add(new FiltroDeExcepciones());
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

@@ -14,6 +14,8 @@ namespace Personal.Infraestructura.ContextoDeDatos
         public DbSet<Persona> Personas { get; set; }
         public DbSet<Proyecto> Proyectos { get; set; }
         public DbSet<Actividad> Actividades { get; set; }
+        public DbSet<LogDeExcepcion> LogDeExcepciones { get; set; }
+        
 
         public PersonalDb() : base("PersonaDb") { }
 

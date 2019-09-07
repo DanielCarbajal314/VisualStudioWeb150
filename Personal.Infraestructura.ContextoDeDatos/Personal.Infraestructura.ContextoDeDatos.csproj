@@ -48,6 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201908241446423_InitialCreate.cs" />
+    <Compile Include="Migrations\201908241446423_InitialCreate.Designer.cs">
+      <DependentUpon>201908241446423_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909071758304_LogDeErrores.cs" />
+    <Compile Include="Migrations\201909071758304_LogDeErrores.Designer.cs">
+      <DependentUpon>201909071758304_LogDeErrores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PersonalDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -60,6 +69,14 @@
       <Project>{9ad7f337-9e74-42dc-a104-2a0b8fac4289}</Project>
       <Name>Personal.Dominio.Entidades</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201908241446423_InitialCreate.resx">
+      <DependentUpon>201908241446423_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909071758304_LogDeErrores.resx">
+      <DependentUpon>201909071758304_LogDeErrores.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

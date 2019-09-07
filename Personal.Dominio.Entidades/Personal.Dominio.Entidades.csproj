@@ -43,7 +43,9 @@
   <ItemGroup>
     <Compile Include="Actividad.cs" />
     <Compile Include="Compartido\EstadoDeLaActividad.cs" />
+    <Compile Include="Compartido\ExcepcionControlada.cs" />
     <Compile Include="Compartido\TEntidadBase.cs" />
+    <Compile Include="LogDeExcepciones.cs" />
     <Compile Include="Persona.cs" />
     <Compile Include="Proyecto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

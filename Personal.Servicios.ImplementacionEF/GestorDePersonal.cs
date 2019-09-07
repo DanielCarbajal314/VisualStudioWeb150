@@ -1,4 +1,5 @@
 ﻿using Personal.Dominio.Entidades;
+using Personal.Dominio.Entidades.Compartido;
 using Personal.Infraestructura.ContextoDeDatos;
 using Personal.Servicios.Interfacez;
 using Personal.Servicios.Interfacez.Peticiones;
@@ -78,9 +79,15 @@ namespace Personal.Servicios.ImplementacionEF
                 ProyectoId = crearActividad.IdProyecto                
             };
 
+            
 
             using (var db = new PersonalDb())
             {
+                if (hayCruceDeHorarios(crearActividad, db))
+                {
+                    throw new ExcepcionControlada("El trabajador tienes algo programado a esa hora"); ;
+                }
+                throw new InvalidCastException("Error De Cast");
                 db.Actividades.Add(actividad);
                 db.SaveChanges();
                 return new ActividadRegistrada()
@@ -94,6 +101,20 @@ namespace Personal.Servicios.ImplementacionEF
                     NombreDelProyecto = db.Proyectos.Find(actividad.ProyectoId).Nombre,
                 };
             }
+        }
+
+        private bool hayCruceDeHorarios(CrearActividad crearActividad, PersonalDb db)
+        {
+            var horaInicio = crearActividad.HoraInicio;
+            var horaFin = crearActividad.HoraFin;
+            return db.Actividades
+                     .Where(x => x.PersonaId.Equals(crearActividad.IdPersona))
+                     .Where(x =>
+                        (x.HoraDeFin >= horaInicio && x.HoraInicio <= horaFin) ||
+                        (x.HoraDeFin >= horaInicio && x.HoraDeFin <= horaFin) ||
+                        (x.HoraInicio <= horaInicio && x.HoraDeFin >= horaFin)
+                     )
+                     .Any();
         }
     }
 }
