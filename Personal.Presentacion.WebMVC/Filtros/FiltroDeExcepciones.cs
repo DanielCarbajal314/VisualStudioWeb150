@@ -4,6 +4,7 @@ using Personal.Servicios.Interfacez;
 using Personal.Servicios.Interfacez.Peticiones;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -51,8 +52,12 @@ namespace Personal.Presentacion.WebMVC.Filtros
         {
             if (actionExecutedContext.Request.Content.Headers.ContentType.ToString() == "application/json")
             {
-                var jsonAsString = actionExecutedContext.Request.Content.ReadAsStreamAsync().Result.ToString();
-                return jsonAsString.ToString();
+                var streamResult = actionExecutedContext.Request.Content.ReadAsStreamAsync().Result;
+                using (var stream = new StreamReader(streamResult))
+                {
+                    stream.BaseStream.Position = 0;
+                    return stream.ReadToEnd();
+                }                   
             }
             return "";
         }

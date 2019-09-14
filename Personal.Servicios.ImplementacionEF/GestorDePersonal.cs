@@ -87,7 +87,6 @@ namespace Personal.Servicios.ImplementacionEF
                 {
                     throw new ExcepcionControlada("El trabajador tienes algo programado a esa hora"); ;
                 }
-                throw new InvalidCastException("Error De Cast");
                 db.Actividades.Add(actividad);
                 db.SaveChanges();
                 return new ActividadRegistrada()
