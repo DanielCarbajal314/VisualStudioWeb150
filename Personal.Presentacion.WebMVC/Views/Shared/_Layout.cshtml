@@ -8,6 +8,8 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery.signalR-2.4.1.js"></script>
+    <script src="/signalr/hubs"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -38,5 +40,36 @@
     </div>
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <link href="~/Content/toasty.css" rel="stylesheet" />
+    <script src="~/Scripts/Galerias/toasty.js"></script>
+
+    <script>
+        var options = {
+            classname: "toast",
+            transition: "fade",
+            insertBefore: true,
+            duration: 5000,
+            enableSounds: true,
+            autoClose: true,
+            progressBar: true,
+            sounds: {
+                info: "/Content/sounds/info/1.mp3",
+                success: "/Content/sounds/success/1.mp3",
+                warning: "/Content/sounds/warning/1.mp3",
+                error: "/Content/sounds/error/1.mp3",
+            }
+        };
+        var toast = new Toasty(options);
+
+        var notificationProxy = $.connection.notificationHub;
+        notificationProxy.client.NewNotificationPushed = function (message) {
+            toast.success(message)
+        }; 
+        $.connection.hub.start();
+
+        function NotifyAllClients(message) {
+            notificationProxy.server.sendNewNotifacionToAllClients(message);
+        }
+    </script>
 </body>
 </html>

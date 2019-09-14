@@ -1,4 +1,6 @@
-﻿using Personal.Presentacion.WebMVC.Filtros;
+﻿using Microsoft.AspNet.SignalR;
+using Personal.Presentacion.WebMVC.Filtros;
+using Personal.Presentacion.WebMVC.Hubs;
 using Personal.Servicios.ImplementacionEF;
 using Personal.Servicios.Interfacez;
 using Personal.Servicios.Interfacez.Peticiones;
@@ -38,7 +40,13 @@ namespace Personal.Presentacion.WebMVC.Controllers
         [HttpPost]
         public ActividadRegistrada RegistrarNuevaActividad(CrearActividad crearActividad)
         {
-            return this._gestorDePersonal.RegistrarNuevaActividad(crearActividad);
+            var nuevaActividadRegistrada = this._gestorDePersonal.RegistrarNuevaActividad(crearActividad);
+
+            var context = GlobalHost.ConnectionManager.GetHubContext<NotificationHub>();
+            string message = "Se registro una nueva actividad con id " + nuevaActividadRegistrada.Id;
+            context.Clients.All.NewNotificationPushed(message);
+
+            return nuevaActividadRegistrada;
         }
     }
 }
